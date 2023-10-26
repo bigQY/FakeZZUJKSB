@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 
 <head>
+  <link rel="manifest" href="/manifest.json">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport"
-    content="width=350, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0, user-scalable=no;" />
+    content="width=350, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0, user-scalable=no" />
   <title>郑州大学数据中台</title>
-  <link rel="stylesheet" type="text/css" href="https://jksb.v.zzu.edu.cn/imagesss/_xwss_2017.css" />
-  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="/imagesss/_xwss_2017.css" />
+  <link rel="stylesheet" href="/js/elementui.css">
+  <script src="/js/vue.js"></script>
+  <script src="/js/elementui.js"></script>
   <style>
     #bak_0 {
       MARGIN: 0 auto;
@@ -100,7 +101,7 @@
         tt2 = tt1 % 60;
         tt3 = (tt1 - tt2) / 60;
         // document.getElementById("tim317").innerHTML = tt3 + "分" + tt2 + "秒";
-      } else { 
+      } else {
         // document.getElementById("tim317").innerHTML = "已作废"; 
       }
     }
@@ -116,8 +117,7 @@
         <div style="width:100%;height:7px;background-image: url(/images/split5.png)"></div>
         <div style="width:100%; min-height:90px;">
           <div style="width:100%;height:6px;text-align:left;"></div>
-          <div
-            style="width:100%;min-height:26px;line-height:26px;font-size:16px;
+          <div style="width:100%;min-height:26px;line-height:26px;font-size:16px;
             color:#00c;font-weight:500;font-family:'黑体';
             background-image:url(/imagesss/sf_sheng4.png)">
             <span style="color:#00a">{{userInfo.orgnization}}.{{userInfo.name}}</span>　<a><span
@@ -144,7 +144,9 @@
           <div class="bar916">
             <div style="width:50%;height:100%;float:left;font-size:12px;color:#666;line-height:20px;" id="msg11b"></div>
             <div style="width:48%;height:100%;float:right;font-size:12px;color:#666;line-height:20px;" id="msg11c"><span
-                style="color:#00a">定位[未获取到地市详情]附近</span>　<span style="color:#a00">未在设定区域内扫码</span></div>
+                style="color:#00a">定位[未获取到地市详情]附近</span></br>
+              <span style="color:#a00">未在设定区域内扫码</span>
+            </div>
           </div>
         </div>
         <div style="width:100%;height:7px;BACKGROUND-IMAGE: url(/images/split5.png)"></div>
@@ -214,7 +216,7 @@
           const formattedDate = `${month}月${day}日 ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}获取`
           return formattedDate
         },
-        showSettingDialog(){
+        showSettingDialog() {
           this.visible = true
         },
         saveUserInfo() {
@@ -224,6 +226,15 @@
       }
     })
 
+  </script>
+  <script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('./sw.js').then(function(registration) {
+		    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}).catch(function(err) {
+		    	console.log('ServiceWorker registration failed: ', err);
+		    });
+		}
   </script>
   <style>
     .el-dialog {
