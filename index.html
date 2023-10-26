@@ -121,9 +121,11 @@
             color:#00c;font-weight:500;font-family:'黑体';
             background-image:url(/imagesss/sf_sheng4.png)">
             <span style="color:#00a">{{userInfo.orgnization}}.{{userInfo.name}}</span>　<a><span
-                style="font-size:12px;;color:#00c;">〖切换账号〗</span></a><br />{{userInfo.gate}}.<span
-              style="background-color:#c0c;color:#ff0">{{userInfo.gateType}}</span><br />身份：{{userInfo.identity}}<span
-              style="font-size:12px;color:#333;">({{getDateStr()}})</span><br />　
+                style="font-size:12px;;color:#00c;">〖切换账号〗</span></a><br />{{userInfo.gate}}.
+                <span v-if="!userInfo.isEntrance" style="background-color:#c0c;color:#ff0">{{gateType}}</span>
+                <span v-else="userInfo.isEntrance" style="background-color:#070;color:#ff0">{{gateType}}</span>
+                <br />
+                身份：{{userInfo.identity}}<span style="font-size:12px;color:#333;">({{getDateStr()}})</span><br />　
           </div>
         </div>
         <div style="width:100%;height:15px;background-color:#0012ff;" id="bian92a"></div>
@@ -144,8 +146,9 @@
           <div class="bar916">
             <div style="width:50%;height:100%;float:left;font-size:12px;color:#666;line-height:20px;" id="msg11b"></div>
             <div style="width:48%;height:100%;float:right;font-size:12px;color:#666;line-height:20px;" id="msg11c"><span
-                style="color:#00a">定位[未获取到地市详情]附近</span></br>
-              <span style="color:#a00">未在设定区域内扫码</span>
+                style="color:#00a">定位[{{userInfo.isPositionVisible?userInfo.gate:'未获取到地市详情'}}]附近</span></br>
+              <span v-if="userInfo.isPositionVisible" style="color:#00c">扫码在设定区域内</span>
+              <span v-else style="color:#a00">未在设定区域内扫码</span>
             </div>
           </div>
         </div>
@@ -173,10 +176,17 @@
             <el-input v-model="userInfo.gate"></el-input>
           </el-form-item>
           <el-form-item label="门岗类型">
-            <el-input v-model="userInfo.gateType"></el-input>
+            <el-switch
+              v-model="userInfo.isEntrance"
+              active-text="入口"
+              inactive-text="出口">
           </el-form-item>
           <el-form-item label="身份">
             <el-input v-model="userInfo.identity"></el-input>
+          </el-form-item>
+          <el-form-item label="显示定位">
+            <el-switch
+              v-model="userInfo.isPositionVisible"/>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="saveUserInfo()">保 存</el-button>
@@ -195,9 +205,15 @@
             orgnization: '计算机与人工智能学院',
             name: '李蓬',
             gate: '主校区东门',
-            gateType: '出口',
             identity: '正常出入校园本科生',
+            isEntrance: true,
+            isPositionVisible: true,
           }
+        }
+      },
+      computed:{
+        gateType() {
+          return this.isEntrance ? '入口' : '出口'
         }
       },
       mounted() {
@@ -228,13 +244,13 @@
 
   </script>
   <script>
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('./sw.js').then(function(registration) {
-		    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		}).catch(function(err) {
-		    	console.log('ServiceWorker registration failed: ', err);
-		    });
-		}
+		// if ('serviceWorker' in navigator) {
+		// 	navigator.serviceWorker.register('./sw.js').then(function(registration) {
+		//     console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		// }).catch(function(err) {
+		//     	console.log('ServiceWorker registration failed: ', err);
+		//     });
+		// }
   </script>
   <style>
     .el-dialog {
