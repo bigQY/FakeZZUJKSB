@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=350, initial-scale=1.0, maximum-scale=1.0, user-scalable=1.0, user-scalable=no;" />
+  <title>郑州大学数据中台</title>
+  <link rel="stylesheet" type="text/css" href="https://jksb.v.zzu.edu.cn/imagesss/_xwss_2017.css" />
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <style>
+    #bak_0 {
+      MARGIN: 0 auto;
+      left: 0;
+      WIDTH: 350px;
+      min-HEIGHT: 540px;
+    }
+
+    .hes1 {
+      width: 165px;
+      height: 100%;
+      line-height: 20px;
+      font-size: 14px;
+      color: #008a24;
+      text-align: center;
+      background-color: #a3fdba;
+      float: left;
+      border-radius: 10px;
+    }
+
+    .hes2 {
+      width: 165px;
+      height: 100%;
+      line-height: 20px;
+      font-size: 14px;
+      color: #909;
+      text-align: center;
+      background-color: #c4c4c4;
+      float: left;
+      border-radius: 10px;
+    }
+
+    .yim1 {
+      width: 165px;
+      height: 100%;
+      line-height: 20px;
+      font-size: 14px;
+      color: #005ddc;
+      text-align: center;
+      background-color: #bad7ff;
+      float: left;
+      border-radius: 10px;
+    }
+
+    .yim2 {
+      width: 165px;
+      height: 100%;
+      line-height: 20px;
+      font-size: 14px;
+      color: #909;
+      text-align: center;
+      background-color: #c4c4c4;
+      float: left;
+      border-radius: 10px;
+    }
+
+    .bar916 {
+      width: 100%;
+      height: 36px;
+      line-height: 18px;
+      font-size: 12px;
+      color: #777;
+      text-align: center
+    }
+  </style>
+  <script Language="javascript">
+    function zzjCallOneUrl(us) {
+      document.getElementById("zzj_fun_426s").src = us;
+    }
+    var timeID = 0;
+    var tt1 = 600;
+    tt2 = 0;
+    tt3 = 0;
+    var timeID = setInterval("hnceTimer()", 1000);
+    function hnceTimer() {
+      tt1--;
+      if (tt1 >= 0) {
+        if ((tt1 % 2) == 1) {
+          document.getElementById('bian92a').style.backgroundColor = "#aab0fe";
+          document.getElementById('bian92b1').style.backgroundColor = "#aab0fe";
+          document.getElementById('bian92b2').style.backgroundColor = "#aab0fe";
+          document.getElementById('bian92c').style.backgroundColor = "#aab0fe";
+        } else {
+          document.getElementById('bian92a').style.backgroundColor = "#0012ff";
+          document.getElementById('bian92b1').style.backgroundColor = "#0012ff";
+          document.getElementById('bian92b2').style.backgroundColor = "#0012ff";
+          document.getElementById('bian92c').style.backgroundColor = "#0012ff";
+        }
+        tt2 = tt1 % 60;
+        tt3 = (tt1 - tt2) / 60;
+        // document.getElementById("tim317").innerHTML = tt3 + "分" + tt2 + "秒";
+      } else { 
+        // document.getElementById("tim317").innerHTML = "已作废"; 
+      }
+    }
+
+  </script>
+</head>
+
+<body>
+  <div id="vueApp">
+    <form method="POST" name="myform52" action="" @click="showSettingDialog()">
+      <div id="bak_0">
+        <div style="width:100%;height:88px;background:url(/imagesss/title316_63137.png);"></div>
+        <div style="width:100%;height:7px;background-image: url(/images/split5.png)"></div>
+        <div style="width:100%; min-height:90px;">
+          <div style="width:100%;height:6px;text-align:left;"></div>
+          <div
+            style="width:100%;min-height:26px;line-height:26px;font-size:16px;
+            color:#00c;font-weight:500;font-family:'黑体';
+            background-image:url(/imagesss/sf_sheng4.png)">
+            <span style="color:#00a">{{userInfo.orgnization}}.{{userInfo.name}}</span>　<a><span
+                style="font-size:12px;;color:#00c;">〖切换账号〗</span></a><br />{{userInfo.gate}}.<span
+              style="background-color:#c0c;color:#ff0">{{userInfo.gateType}}</span><br />身份：{{userInfo.identity}}<span
+              style="font-size:12px;color:#333;">({{getDateStr()}})</span><br />　
+          </div>
+        </div>
+        <div style="width:100%;height:15px;background-color:#0012ff;" id="bian92a"></div>
+        <div style="width:100%;height:280px;">
+          <div style="width:15px;height:100%;background-color:#0012ff;float:left" id="bian92b1"></div>
+          <div style="width:320px;height:100%;float:left;text-align:center;">
+            <img src="/imagesss/need_photo.png" style="height:280px;border:0px;" id="img916" />
+          </div>
+          <div style="width:14px;height:100%;background-color:#0012ff;float:right" id="bian92b2"></div>
+        </div>
+        <div style="width:100%;height:15px;background-color:#0012ff;" id="bian92c"></div>
+        <div style="width:100%;height:7px;BACKGROUND-IMAGE: url(/images/split5.png)"></div>
+        <div style="width:100%;height:116px;">
+          <div style="width:100%;height:80px;" id="msg11a">
+            <div style="width:20px;height:100%;float:left"></div>
+            <div style="width:2px;height:100%;float:right"></div>
+          </div>
+          <div class="bar916">
+            <div style="width:50%;height:100%;float:left;font-size:12px;color:#666;line-height:20px;" id="msg11b"></div>
+            <div style="width:48%;height:100%;float:right;font-size:12px;color:#666;line-height:20px;" id="msg11c"><span
+                style="color:#00a">定位[未获取到地市详情]附近</span>　<span style="color:#a00">未在设定区域内扫码</span></div>
+          </div>
+        </div>
+        <div style="width:100%;height:7px;BACKGROUND-IMAGE: url(/images/split5.png)"></div>
+        <div style="width:100%;min-height:18px;line-height:18px;font-size:12px;color:#666;text-align:center">
+          郑州大学党委保卫部、保卫处、信息化办公室</div>
+      </div>
+
+      <div style="width:1px;height:1px;">
+
+      </div>
+    </form>
+
+    <div style="width:100%;height:50px;"></div>
+    <div>
+      <el-dialog :visible.sync="visible" title="参数设置">
+        <el-form ref="form" :model="userInfo" label-width="80px">
+          <el-form-item label="学院">
+            <el-input v-model="userInfo.orgnization"></el-input>
+          </el-form-item>
+          <el-form-item label="姓名">
+            <el-input v-model="userInfo.name"></el-input>
+          </el-form-item>
+          <el-form-item label="门岗">
+            <el-input v-model="userInfo.gate"></el-input>
+          </el-form-item>
+          <el-form-item label="门岗类型">
+            <el-input v-model="userInfo.gateType"></el-input>
+          </el-form-item>
+          <el-form-item label="身份">
+            <el-input v-model="userInfo.identity"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="saveUserInfo()">保 存</el-button>
+          </el-form-item>
+        </el-form>
+      </el-dialog>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#vueApp',
+      data() {
+        return {
+          visible: false,
+          userInfo: {
+            orgnization: '计算机与人工智能学院',
+            name: '李蓬',
+            gate: '主校区东门',
+            gateType: '出口',
+            identity: '正常出入校园本科生',
+          }
+        }
+      },
+      mounted() {
+        const userInfo = localStorage.getItem('userInfo')
+        if (userInfo) {
+          this.userInfo = JSON.parse(userInfo)
+        }
+      },
+      methods: {
+        getDateStr() {
+          const currentDate = new Date()
+          const month = currentDate.getMonth() + 1
+          const day = currentDate.getDate()
+          const hours = currentDate.getHours()
+          const minutes = currentDate.getMinutes()
+          const formattedDate = `${month}月${day}日 ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}获取`
+          return formattedDate
+        },
+        showSettingDialog(){
+          this.visible = true
+        },
+        saveUserInfo() {
+          this.visible = false
+          localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
+        }
+      }
+    })
+
+  </script>
+  <style>
+    .el-dialog {
+      width: 90% !important;
+    }
+  </style>
+</body>
+
+</html>
